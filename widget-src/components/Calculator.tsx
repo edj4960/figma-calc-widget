@@ -1,13 +1,13 @@
 const { widget } = figma;
-const { useSyncedState, AutoLayout, Text, SVG, Input, Rectangle } = widget;
+const { AutoLayout, Rectangle, Text } = widget;
 import CalcScreen from "./CalcScreen";
 import CalculatorContext from "../calculatorContext"
 import CommandFactory, { CommandEnum } from "../commandFactory";
 import Command from "../commands/command";
 import Button from "./Button";
 import { tbPack } from "../styles/tbPack";
+import TbLogo from "./TbLogo";
 
-// Define the component and type the props
 function Calculator(props: Partial<AutoLayoutProps>) {
 
     const calculatorContext = CalculatorContext();
@@ -34,6 +34,7 @@ function Calculator(props: Partial<AutoLayoutProps>) {
             horizontalAlignItems="center"
             {...props}
         >
+            <TbLogo />
             <Text
                 name="TB-B100"
                 fill="#FFFFFF73"
@@ -52,9 +53,10 @@ function Calculator(props: Partial<AutoLayoutProps>) {
                 name="mainCalcArea"
                 overflow="visible"
                 direction="vertical"
-                spacing={32}
+                spacing={16}
             >
                 <CalcScreen name="CalcScreen" displayValue={calculatorContext.expression} />
+                <Rectangle height={1} width={1} />
 
                 <AutoLayout
                     name="ButtonsArea"
@@ -88,7 +90,7 @@ function Calculator(props: Partial<AutoLayoutProps>) {
                     horizontalAlignItems="center"
                 >
                     <Button command={CommandFactory.getCommand(4)} buttonStyle={styles.buttons[2]} buttonClick={onButtonClick} />
-                    <Button command={CommandFactory.getCommand(5)} buttonStyle={styles.buttons[2]} buttonClick={onButtonClick} />
+                    <Button command={CommandFactory.getCommand(5)} buttonStyle={styles.buttons[2]} buttonClick={onButtonClick} showEmbos />
                     <Button command={CommandFactory.getCommand(6)} buttonStyle={styles.buttons[2]} buttonClick={onButtonClick} />
                     <Button command={CommandFactory.getCommand(CommandEnum.SUBTRACT)} buttonStyle={styles.buttons[1]} buttonClick={onButtonClick} />
                 </AutoLayout>
@@ -116,41 +118,7 @@ function Calculator(props: Partial<AutoLayoutProps>) {
                     <Button command={CommandFactory.getCommand(CommandEnum.EQUALS)} buttonStyle={styles.buttons[0]} buttonClick={onButtonClick} width={80} />
                 </AutoLayout>
                 {/* TODO: Implement rectangle and position properly */}
-                {/* <Rectangle
-                    name="homeKeyEmboss"
-                    effect={[
-                        {
-                            type: "inner-shadow",
-                            color:
-                                "#FFFFFF36",
-                            offset: {
-                                x: 1,
-                                y: 1,
-                            },
-                            blur: 2,
-                        },
-                        {
-                            type: "inner-shadow",
-                            color:
-                                "#00000014",
-                            offset: {
-                                x: -1,
-                                y: -1,
-                            },
-                            blur: 2,
-                        },
-                    ]}
-                    x={86}
-                    y={172}
-                    positioning="absolute"
-                    fill="#8383838C"
-                    stroke="#83838357"
-                    cornerRadius={2}
-                    strokeWidth={0.5}
-                    strokeAlign="outside"
-                    width={20}
-                    height={2}
-                /> */}
+                
             </AutoLayout>
         </AutoLayout>
     );

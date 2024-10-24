@@ -1,7 +1,11 @@
 const { widget } = figma;
-const { useSyncedState, AutoLayout, Text, SVG, Input } = widget;
+const { AutoLayout, Text } = widget;
 
-function CalcScreen(props: Partial<AutoLayoutProps>) {
+interface CalcScreenProps extends Partial<AutoLayoutProps> {
+    displayValue: string
+}
+
+function CalcScreen(props: CalcScreenProps) {
     return (
         <AutoLayout
             name="CalcScreen"
@@ -58,5 +62,4 @@ function CalcScreen(props: Partial<AutoLayoutProps>) {
     );
 }
 
-// Export the component as default
 export default CalcScreen;

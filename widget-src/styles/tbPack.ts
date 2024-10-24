@@ -1,4 +1,3 @@
-import buttonStyleInterface from "./styleInterfaces/buttonStyleInterface";
 import packInterface from "./styleInterfaces/packInterface";
 
 export const tbPack: packInterface = {
@@ -76,7 +75,14 @@ export const tbPack: packInterface = {
                     },
                 ],
             fill: '#5E5E5E',
-            hoverFill: '#aaaeee'
+            hoverStyle: {
+                fill: [
+                    {
+                        type: "solid",
+                        color: { r: 0.55, g: 0.55, b: 0.55, a: 1 }
+                    },
+                ],
+            },
         },
         {
             effect:
@@ -108,7 +114,14 @@ export const tbPack: packInterface = {
                     },
                 ],
             fill: '#5B596E',
-            hoverFill: '#aaaeee'
+            hoverStyle: {
+                fill: [
+                    {
+                        type: "solid",
+                        color: { r: 0.58, g: 0.57, b: 0.70, a: 1 },
+                    },
+                ],
+            },
         },
         {
             effect:
@@ -142,7 +155,14 @@ export const tbPack: packInterface = {
                     },
                 ],
             fill: '#838383',
-            hoverFill: '',
+            hoverStyle: {
+                fill: [
+                    {
+                        type: "solid",
+                        color: { r: 0.78, g: 0.78, b: 0.78, a: 1 },
+                    },
+                ],
+            }
         }
     ]
 };
