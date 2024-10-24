@@ -43,7 +43,7 @@ function CalcScreen(props: Partial<AutoLayoutProps>) {
             {...props}
         >
             <Text
-                name="display-value" // Change name to be more dynamic
+                name="display-value"
                 fill="#000"
                 horizontalAlignText="right"
                 fontFamily="Space Mono"
@@ -52,7 +52,7 @@ function CalcScreen(props: Partial<AutoLayoutProps>) {
                 textCase="upper"
                 width="fill-parent" 
             >
-                {props.displayValue || '0'} {/* Dynamically render display value */}
+                {props.displayValue || '0'}
             </Text>
         </AutoLayout>
     );

@@ -1,60 +1,34 @@
 const { widget } = figma;
 const { useSyncedState, AutoLayout, Text, SVG, Input } = widget;
+import Command from "../commands/command";
+import buttonStyleInterface from "../styles/styleInterfaces/buttonStyleInterface";
 
-// Define custom props for the button
 interface ButtonProps extends Partial<AutoLayoutProps> {
-    name: string;
-    value: string;
-    width: number;
+    command: Command;
+    buttonStyle: buttonStyleInterface
     buttonClick: Function;
+    width?: number;
 }
 
-// Define the ButtonProperty1Default component with the custom props
-function ButtonProperty1Default(props: ButtonProps) {
-    const { value, name, width, ...restProps } = props;
+function Button(props: ButtonProps) {
+    const { command, buttonStyle, buttonClick, width } = props;
 
     return (
         <AutoLayout
-            name={name}
-            onClick={() => props.buttonClick(props.value)}
-            effect={[
-                {
-                    type: "inner-shadow",
-                    color: "#00000014",
-                    offset: { x: -8, y: -8 },
-                    blur: 20,
-                },
-                {
-                    type: "inner-shadow",
-                    color: "#FFFFFF0D",
-                    offset: { x: 8, y: 8 },
-                    blur: 20,
-                },
-                {
-                    type: "drop-shadow",
-                    color: "#00000014",
-                    offset: { x: 2, y: 2 },
-                    blur: 8,
-                    showShadowBehindNode: false,
-                },
-                {
-                    type: "drop-shadow",
-                    color: "#00000021",
-                    offset: { x: 0, y: 0 },
-                    blur: 2,
-                    spread: 1,
-                    showShadowBehindNode: false,
-                },
-            ]}
-            fill="#5E5E5E"
+            onClick={() => buttonClick(command)}
+            
+            effect={buttonStyle?.effect}
+            fill={buttonStyle?.fill}
             cornerRadius={8}
             strokeAlign="outside"
             spacing={10}
             padding={10}
-            width={width} // Use the width prop
+            width={width || 49}
             horizontalAlignItems="center"
             verticalAlignItems="center"
-            {...restProps} // Pass any additional props
+            hoverStyle={{
+                fill: buttonStyle?.hoverFill
+            }}
         >
             <Text
                 name="ButtonText"
@@ -79,11 +53,10 @@ function ButtonProperty1Default(props: ButtonProps) {
                 fontWeight={600}
                 textCase="upper"
             >
-                {value}
+                {props.command?.value}
             </Text>
         </AutoLayout>
     );
 }
 
-// Export the component
-export default ButtonProperty1Default;
+export default Button;
